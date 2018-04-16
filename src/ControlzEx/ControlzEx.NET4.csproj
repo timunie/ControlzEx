@@ -91,6 +91,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyChangeNotifier.cs" />
     <Compile Include="TabControlEx.cs" />
+    <Compile Include="Theming\Accent.cs" />
+    <Compile Include="Theming\AppTheme.cs" />
+    <Compile Include="Theming\Enumerations.cs" />
+    <Compile Include="Theming\ThemeManager.cs" />
     <Compile Include="ToolTipAssist.cs" />
   </ItemGroup>
   <ItemGroup>
