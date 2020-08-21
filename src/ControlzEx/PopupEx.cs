@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Threading;
 
 namespace ControlzEx
 {
@@ -62,10 +63,15 @@ namespace ControlzEx
         /// </summary>
         public void RefreshPosition()
         {
-            var offset = this.HorizontalOffset;
-            // "bump" the offset to cause the popup to reposition itself on its own
-            this.SetCurrentValue(HorizontalOffsetProperty, offset + 1);
-            this.SetCurrentValue(HorizontalOffsetProperty, offset);
+            Action repositionPopup = new Action(() =>
+            {
+                var offset = this.HorizontalOffset;
+                // "bump" the offset to cause the popup to reposition itself on its own
+                this.SetCurrentValue(HorizontalOffsetProperty, offset + 1);
+                this.SetCurrentValue(HorizontalOffsetProperty, offset);
+            });
+
+            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, repositionPopup);
         }
 
         private void PopupEx_Loaded(object sender, RoutedEventArgs e)

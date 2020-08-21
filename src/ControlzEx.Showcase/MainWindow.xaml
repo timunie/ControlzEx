@@ -566,6 +566,10 @@
                 <TabItem Header="Theming">
                     <views:ThemingView />
                 </TabItem>
+
+                <TabItem Header="PopupEx Issue">
+                    <views:PopupExIssue />
+                </TabItem>
             </controlzEx:TabControlEx>
         </Grid>
     </Grid>
