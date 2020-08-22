@@ -10,6 +10,17 @@
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
              mc:Ignorable="d">
     <StackPanel Grid.IsSharedSizeScope="True">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="A" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock>Try new mode?</TextBlock>
+            <CheckBox Grid.Column="1" Content="toogle to new mode here"
+                      IsChecked="{Binding Path=(controlzex:PopupEx.TryNew), Mode=TwoWay}"/>
+        </Grid>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" SharedSizeGroup="A" />

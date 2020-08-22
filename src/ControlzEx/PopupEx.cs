@@ -58,20 +58,37 @@ namespace ControlzEx
             this.Opened += this.PopupEx_Opened;
         }
 
+        // TODO: Just for testing. Remove bevore merge
+
+        public static bool TryNew { get; set; } = false;
+
         /// <summary>
         /// Causes the popup to update it's position according to it's current settings.
         /// </summary>
         public void RefreshPosition()
         {
-            Action repositionPopup = new Action(() =>
+
+            if (TryNew)
+            {
+                Action repositionPopup = new Action(() =>
+                           {
+                               var offset = this.HorizontalOffset;
+                               // "bump" the offset to cause the popup to reposition itself on its own
+                               this.SetCurrentValue(HorizontalOffsetProperty, offset + 1);
+                               this.SetCurrentValue(HorizontalOffsetProperty, offset);
+                           });
+
+                this.Dispatcher.BeginInvoke(DispatcherPriority.Background, repositionPopup);
+            }
+            else
             {
                 var offset = this.HorizontalOffset;
                 // "bump" the offset to cause the popup to reposition itself on its own
                 this.SetCurrentValue(HorizontalOffsetProperty, offset + 1);
                 this.SetCurrentValue(HorizontalOffsetProperty, offset);
-            });
+            }
 
-            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, repositionPopup);
+           
         }
 
         private void PopupEx_Loaded(object sender, RoutedEventArgs e)
